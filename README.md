@@ -1,19 +1,16 @@
-# pdf-translater
+# pdf-translator
 
 ## 仮想環境の作成
 
 仮想環境を作成する
 ```bash
-python -m venv pdf-translater
+python -m venv pdf-translator
 ```
 
 仮想環境を有効化する
 ```bash
 # 仮想環境を有効化 (Linux/macOS)
-source pdf-translater/bin/activate
-
-# 仮想環境を有効化 (Windows)
-venv\Scripts\activate
+source pdf-translator/bin/activate
 ```
 
 依存関係のインストール

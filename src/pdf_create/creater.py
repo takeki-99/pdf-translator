@@ -1,7 +1,6 @@
 import pymupdf
 import sys
 import os
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from translate.translator import translate_text
 
@@ -16,7 +15,9 @@ def create_pdf(i_doc: pymupdf.Document, output_file_name: str):
                 continue
             translated_text = translate_text(block[4], "JA")
             print(type(translated_text))
-            new_page.insert_text(point=(block[0], block[1]),text=translated_text)
+            print(f"translated: {block[4]} -> {translated_text}")
+            print(font_path)
+            new_page.insert_text(point=(block[0], block[1]),text=translated_text, fontname="japan")
         break
     # save
     o_doc.save(output_file_name)
