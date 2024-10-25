@@ -27,9 +27,16 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 ``` -->
 
-仮想環境の無効化
+<!-- 仮想環境の無効化
 ```bash
 deactivate
+``` -->
+
+## DEEPL API KEY の設定
+ルートディレクトリに `.env` ファイルを作成し、以下の内容を記述する。
+
+```bash
+DEEPL_API_KEY={YOUR_DEEPL_API_KEY}
 ```
 
 
@@ -38,3 +45,4 @@ deactivate
 ```bash
 source sample/sample.sh
 ```
+

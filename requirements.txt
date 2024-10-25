@@ -1,6 +1,10 @@
+certifi==2024.8.30
+charset-normalizer==3.4.0
 contourpy==1.2.1
 cycler==0.12.1
+deepl==1.19.1
 fonttools==4.53.1
+idna==3.10
 kiwisolver==1.4.5
 matplotlib==3.9.2
 numpy==2.1.1
@@ -9,5 +13,8 @@ pillow==10.4.0
 PyMuPDF==1.24.12
 pyparsing==3.1.2
 python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
+requests==2.32.3
 six==1.16.0
+urllib3==2.2.3
 wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.5/libexec/wheel-0.44.0-py3-none-any.whl#sha256=8d8a590e50bda8422000110e90bc730ebfcd8363d2de80793ac819b7f252e97d

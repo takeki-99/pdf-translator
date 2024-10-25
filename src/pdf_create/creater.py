@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from translate.translater import translate_text
+from translate.translator import translate_text
 
 # idoc をもとに, output_file_name に PDF を作成する
 def create_pdf(i_doc: pymupdf.Document, output_file_name: str):
@@ -14,8 +14,10 @@ def create_pdf(i_doc: pymupdf.Document, output_file_name: str):
             if block[6] == 1:
                 print(f"image was skipped. block_num: {block[5]}")
                 continue
-            translated_text = translate_text(block[4], "ja")
+            translated_text = translate_text(block[4], "JA")
+            print(type(translated_text))
             new_page.insert_text(point=(block[0], block[1]),text=translated_text)
+        break
     # save
     o_doc.save(output_file_name)
     o_doc.close()
