@@ -5,6 +5,10 @@ import deepl
 def add_newline(text: str, width: int, font_size: int) -> str:
     # calculate char_num_per_line
     char_num_per_line = int(width / font_size)
+
+    if char_num_per_line == 0:
+        return text
+
     # every line has char_num_per_line characters
     lines = [text[i:i+char_num_per_line] for i in range(0, len(text), char_num_per_line)]
     return "\n".join(lines)
