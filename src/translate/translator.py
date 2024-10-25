@@ -10,7 +10,6 @@ def add_newline(text: str, width: int, font_size: int) -> str:
     return "\n".join(lines)
 
 # tlanslate text to target language
-# def translate_text(text: str, lang: str) -> str:
 def translate_text(text: str, lang: str, text_area_width: int, font_size: int) -> str:
     # make translator
     load_dotenv()
