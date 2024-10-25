@@ -1,7 +1,2 @@
-# print("python src/sample.py -i input.txt")
-
-# Run the script
-
-echo "python src/sample.py -i sample/input.pdf -o sample/output.pdf -l jp"
-
-python src/sample.py -i sample/input.pdf -o sample/output.pdf -l jp
+echo "python src/pdf_translator.py -i sample/input/sample.pdf -o sample/output/sample.pdf -l JA"
+python src/pdf_translator.py -i sample/input/sample.pdf -o sample/output/sample.pdf -l JA
