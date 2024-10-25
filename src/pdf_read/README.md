@@ -1,1 +1,0 @@
-python module to read pdf file and extract text from it.
