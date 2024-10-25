@@ -8,9 +8,8 @@
     python -m venv pdf-translator
     ```
 
-- 仮想環境を有効化する
+- 仮想環境を有効化する (macOS)
     ```bash
-    # 仮想環境を有効化 (Linux/macOS)
     source pdf-translator/bin/activate
     ```
 
