@@ -30,16 +30,28 @@ deactivate
 ``` -->
 
 ### DEEPL API KEY の設定
-- ルートディレクトリに `.env` ファイルを作成し、以下の内容を記述する。
+- ルートディレクトリに `.env` ファイルを作成し、DEEPL API KEY を設定する.
 
     ```bash
     DEEPL_API_KEY={YOUR_DEEPL_API_KEY}
     ```
 
+## 実行方法
+- PDF ファイルを翻訳する
+
+    ```bash
+    python src/pdf_translator.py -i {path_to_pdf_file} -o {path_to_output_pdf_file} -l {language}
+    ```
+
+    - `path_to_pdf_file`: 翻訳対象の PDF ファイルのパス
+    - `path_to_output_pdf_file`: 翻訳後の PDF ファイルのパス
+    - `language`: 翻訳先の言語
 
 ## sample code
 
 ```bash
-source sample/sample.sh
+python src/pdf_translator.py -i sample/input/sample.pdf -o sample/output/sample.pdf -l JA
 ```
+
+
 
