@@ -15,3 +15,6 @@ __pycache__/
 
 # env ファイル
 .env
+
+# tmp ファイル
+tmp/
