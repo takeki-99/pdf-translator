@@ -1,6 +1,5 @@
 # 仮想環境ディレクトリ
-venv/
-.env/
+pdf-translater/
 
 # Python キャッシュファイル
 __pycache__/
