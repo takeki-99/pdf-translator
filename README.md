@@ -18,6 +18,11 @@
     pip install -r requirements.txt
     ```
 
+<!-- パッケージのインストール
+```bash
+python3 -m pip install xxx
+``` -->
+
 <!-- 依存関係の記録(requirements.txt を作成)
 ```bash
 pip freeze > requirements.txt

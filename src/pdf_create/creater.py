@@ -1,6 +1,10 @@
 import pymupdf
 import sys
 import os
+from tqdm import tqdm
+import tempfile
+import shutil
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from translate.translator import translate_text
 
@@ -11,43 +15,46 @@ def get_font_name(lang: str) -> str:
         return "china-ts"
     return "Helvetica"
 
-# input_file_name をもとに, output_file_name に PDF を作成する
+def remove_newline(text: str) -> str:
+    return text.replace("\n", " ")
+
+# main function
 def create_pdf(input_file_name: str, output_file_name: str, lang: str):
-    i_doc = pymupdf.Document(input_file_name)
-    o_doc = pymupdf.Document()
+    with tempfile.NamedTemporaryFile() as tmp:
+        shutil.copy(input_file_name, tmp.name)
+        translate_pdf(tmp.name, output_file_name, lang)
+
+def translate_pdf(tmp_file_name: str, output_file_name: str, lang: str):
+    doc = pymupdf.open(tmp_file_name)
+    font_name = get_font_name(lang)
     try:
-        for i_page in i_doc:
-            new_page = o_doc.new_page(width=i_page.rect.width, height=i_page.rect.height)
+        for page in tqdm(doc, desc="page"):
             # text
-            for block in i_page.get_text("blocks", sort=True):
-                x_0, y_0, x_1, _, text, block_num, block_type = block
-                if block_type == 1:
-                    print(f"image was skipped. block_num: {block_num}")
+            for block in tqdm(page.get_text("blocks", sort=True), desc="block"):
+                block_type = block[-1]
+                if block_type != 0:
+                    print("block_type is not 0. skip")
                     continue
-                # todo font_size
-                font_size = 6
-                translated_text = translate_text(text, lang, x_1 - x_0, font_size)
-                font_name = get_font_name(lang)
-                new_page.insert_text(
-                    point=(x_0, y_0),
-                    text=translated_text,
-                    fontname=font_name,
-                    fontsize=font_size)
-            # todo image
+                x_0, y_0, x_1, y_1, text, block_num, block_type = block
+                # remove newline
+                text = remove_newline(text)
+
+                translated_text = "comment out next line when debugging"
+                translated_text = translate_text(text, lang)
+                page.add_redact_annot((x_0, y_0, x_1, y_1), text=translated_text, cross_out=False, fontname=font_name)
+
+            page.apply_redactions(
+                images=pymupdf.PDF_REDACT_IMAGE_NONE,
+                graphics=pymupdf.PDF_REDACT_LINE_ART_NONE)
     except KeyboardInterrupt as e:
         print(f"KeyboardInterrupt was raised. {e}")
-        o_doc.save(output_file_name)
-        i_doc.close()
-        o_doc.close()
+        doc.close()
         return
     except Exception as e:
         print(f"Unexpected error was raised. {e}")
-        o_doc.save(output_file_name)
-        i_doc.close()
-        o_doc.close()
+        doc.close()
         return
     # save
-    o_doc.save(output_file_name)
-    o_doc.close()
-    i_doc.close()
-    print(f"output file was saved as {output_file_name}", end="\n\n")
+    doc.save(output_file_name)
+    doc.close()
+    print(f"output file was saved as {output_file_name}", end = "\n\n") 
