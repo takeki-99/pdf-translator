@@ -48,10 +48,12 @@ def translate_pdf(tmp_file_name: str, output_file_name: str, lang: str):
                 graphics=pymupdf.PDF_REDACT_LINE_ART_NONE)
     except KeyboardInterrupt as e:
         print(f"KeyboardInterrupt was raised. {e}")
+        doc.save(output_file_name)
         doc.close()
         return
     except Exception as e:
         print(f"Unexpected error was raised. {e}")
+        doc.save(output_file_name)
         doc.close()
         return
     # save

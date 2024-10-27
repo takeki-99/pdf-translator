@@ -20,7 +20,7 @@
 
 <!-- パッケージのインストール
 ```bash
-python3 -m pip install xxx
+pip install xxx
 ``` -->
 
 <!-- 依存関係の記録(requirements.txt を作成)
