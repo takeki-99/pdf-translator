@@ -18,4 +18,4 @@ requests==2.32.3
 six==1.16.0
 tqdm==4.66.5
 urllib3==2.2.3
-wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.5/libexec/wheel-0.44.0-py3-none-any.whl#sha256=8d8a590e50bda8422000110e90bc730ebfcd8363d2de80793ac819b7f252e97d
+wheel==0.44.0

@@ -16,7 +16,11 @@ def get_font_name(lang: str) -> str:
     return "Helvetica"
 
 def remove_newline(text: str) -> str:
-    return text.replace("\n", " ")
+    # -\n -> ""
+    text = text.replace("-\n", "")
+    # \n -> " "
+    text = text.replace("\n", " ")
+    return text
 
 # main function
 def create_pdf(input_file_name: str, output_file_name: str, lang: str):
